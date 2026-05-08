@@ -299,38 +299,88 @@
     # Q&A / Break
     
     ---
-    # Local Agents with Llama 3
+    # Local Agents in 2026
 
     --
-      
-    <img src="../notebooks/assets-resources/agent-loop.png" width="1500">
+
+    **What is a local agent?**
+
+    --
+
+    - An **LLM** that receives observations and decides what to do next
+
+    --
+
+    - A **tool loop** — the model calls functions (search, file ops, APIs, code execution)
+
+    --
+
+    - **Memory** — short-term (context window) + long-term (vector store / notes)
+
+    --
+
+    <img src="../notebooks/assets-resources/agent-loop.png" width="90%">
 
     <p class="footnote">
-        <a href='https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/'> Explanation of the agent loop in cognitive architectures. </a>
+        <a href='https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/'>Explanation of the agent loop in cognitive architectures.</a>
     </p>
 
     ---
 
-    # Practical Use Case: Private Docs Chatbot
+    # Small Language Models for Local Agents
 
     --
 
-    - **Scenario**: An LLM-powered chatbot designed to assist users by retrieving information from private documents.
+    - SLMs (1B–14B) are now strong enough for **narrow, bounded agentic tasks**
 
     --
 
-    - **User Input**: User asks about specific details from an internal document.
+    - Classification, extraction, tool routing, short summarization → SLMs handle these well
 
     --
 
-    - **LLM Decision**: Determines if the requested information requires search the document repository.
+    - SLMs fail on: multi-step reasoning chains, ambiguous planning, cross-document synthesis
 
     --
 
-    - **Action Taken**: If a search is required, the agent retrieves relevant document sections and provides a concise response based on the content.
+    - **Rule of thumb:** use local SLMs for bounded execution; route to larger/cloud models for open-ended judgment
 
-    <p class="footnote">
-        <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
+    --
+
+    - The right architecture: **local model + retrieval + tools + eval set + fallback router**
+
+    <p style="font-size: 14px; margin-top: 20px;">
+        <a href='https://arxiv.org/pdf/2506.02153'>SLMs for Agentic Tasks — arXiv 2506.02153</a>
+    </p>
+
+    ---
+
+    # Hermes Agent — Full Local Agent Workbench
+
+    --
+
+    - Built by **Nous Research** — auto-detects models running in Ollama
+
+    --
+
+    - **Per-model tool parsers** — adapts tool calling format to each model automatically
+
+    --
+
+    - **118 bundled skills** — file ops, web search, calendar, notes, code execution, and more
+
+    --
+
+    - Persistent memory + messaging integrations + autonomous task execution
+
+    --
+
+    - Best framing for students:
+
+    > *smolagents teaches how agents work. Hermes shows what a local-first agent product can become.*
+
+    <p style="font-size: 14px; margin-top: 20px;">
+        <a href='https://hermes-agent.nousresearch.com/'>hermes-agent.nousresearch.com</a>
     </p>
 
     ---
@@ -338,7 +388,7 @@
 
       <h1>
       <span style="background-color: lightgreen">
-        Notebook Demo - Tool Calling/Structured Outputs and local agents with Llama 3
+        Notebook Demo - Tool Calling/Structured Outputs and Local Agents
       </span>
       </h1>
     ---
