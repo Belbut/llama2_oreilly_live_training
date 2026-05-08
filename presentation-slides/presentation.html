@@ -129,52 +129,52 @@
     </p>
 
     ---
-    # Llama 3.3 Evaluation Results
+    # The 2026 Local Model Lineup
 
-    <img src="../notebooks/assets-resources/llama33-evals.png" style="width: 70%;">
+    | Model | RAM / VRAM | Best For | License |
+    |-------|-----------|----------|---------|
+    | **Gemma 4 26B (MoE)** | 8 GB VRAM | General + multimodal | Apache 2.0 |
+    | **Gemma 4 31B (dense)** | 20 GB VRAM | Best open general model | Apache 2.0 |
+    | **Qwen 3.6 27B** | 17 GB VRAM | Coding + agentic | Apache 2.0 |
+    | **Llama 3.3 70B** | 43 GB VRAM | Coding, instruction | Llama Community |
+    | **DeepSeek-R1 32B** | 20 GB VRAM | Math + chain-of-thought | MIT |
+    | **Phi-4 14B** | 9 GB VRAM | Reasoning, STEM, small GPU | MIT |
+    | **Qwen3 4B** | CPU only | General, fast, multilingual | Apache 2.0 |
 
-    <p style="font-size: 14px; margin-top: 0px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
-    </p>
-
-    ---
-    # Llama 3.3 Evaluation Results
-
-    <img src="../notebooks/assets-resources/llama33-evals2.png" style="width: 90%;">
-
-    <p style="font-size: 14px; margin-top: 0px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
-    </p>
-
-    ---
-
-    # Llama 3.3 Evaluation Results
-
-    <img src="../notebooks/assets-resources/llama33-evals3.png" style="width: 90%;">
-
-    <p style="font-size: 14px; margin-top: 0px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
+    <p style="font-size: 14px; margin-top: 20px;">
+      Source: Artificial Analysis Intelligence Index + Ollama library download counts, May 2026
     </p>
 
     ---
 
-    # Llama 3.3 Evaluation Results
+    # Why Gemma 4 is the New Default for This Course
 
-    <img src="../notebooks/assets-resources/llama33-evals4.png" style="width: 90%;">
+    --
 
-    <p style="font-size: 14px; margin-top: 0px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
-    </p>
+    - **All compute tiers** — E2B and E4B run CPU-only; 26B MoE fits 8 GB VRAM; 31B dense for prosumer GPUs
 
-    ---
+    --
 
-    # Llama 3.3 Evaluation Results
+    - **Multimodal by default** — image and audio input across all Gemma 4 variants, no separate model needed
 
-    <img src="../notebooks/assets-resources/llama33-evals5.png" style="width: 90%;">
+    --
 
-    <p style="font-size: 14px; margin-top: 0px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
-    </p>
+    - **Clean commercial license** — Apache 2.0; no MAU caps, no EU restrictions, no license anxiety
+
+    --
+
+    - **Top benchmark quality** — Gemma 4 31B ranks #3 among all open-weight models on Chatbot Arena
+
+    --
+
+    - **Active development** — Google iterating fast; first-class Ollama integration
+
+    --
+
+    ```bash
+    ollama pull gemma4:26b   # consumer GPU (8 GB VRAM)
+    ollama pull gemma4:e4b   # CPU-only students
+    ```
 
     ---
     class: center, middle
