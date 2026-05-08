@@ -384,6 +384,37 @@
     </p>
 
     ---
+
+    # Vibe Checking Local Agents
+
+    --
+
+    **The loop:**
+
+    1. Pick a small, realistic task from your use case
+
+    --
+
+    2. Run the agent on it with 2–3 local models
+
+    --
+
+    3. Score each output on 3 axes:
+       - **Completion** — did the agent finish the task goal? (0 = no, 1 = partial, 2 = yes)
+       - **Tool-use correctness** — did it call the right tool with the right arguments?
+       - **Hallucination** — did it stay grounded, or invent facts not in the context?
+
+    --
+
+    4. **Decide**: local vs. frontier
+       - Local wins → use it; set up routing rule
+       - Local fails → identify which axis and route those cases to a stronger model
+
+    --
+
+    > Build a 25-example vibe-check dataset. Score 2–3 models. Pick on evidence, not intuition.
+
+    ---
     class: center, middle
 
       <h1>
