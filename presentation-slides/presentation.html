@@ -14,6 +14,8 @@
             font-weight: normal;
         }
         .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+        .left-column  { width: 48%; float: left; }
+        .right-column { width: 48%; float: right; }
     </style>
 </head>
 <body>
@@ -102,30 +104,27 @@
     <img src="../notebooks/assets-resources/llama3-intro.png" width="90%">
 
     ---
-    # Llama3 Releases
-    
-    - Meta Released Llama 3 in April of 2024
+    # Open Models: How We Got Here
 
-    - Llama 3.1 was released in July of 2024
+    .left-column[
+    **Meta / Llama**
+    - Apr 2024 — Llama 3 (8B, 70B)
+    - Jul 2024 — Llama 3.1 (128K context)
+    - Sep 2024 — Llama 3.2 (multimodal, small sizes)
+    - Dec 2024 — Llama 3.3 70B (best open coding model)
+    - Apr 2025 — Llama 4 Scout / Maverick (MoE, 10M ctx)
+    ]
 
-    - Llama 3.2 was released in September of 2024
+    .right-column[
+    **The rest of the field catches up**
+    - Jan 2025 — DeepSeek-R1 (frontier reasoning, MIT)
+    - Apr 2025 — Qwen 3 (hybrid thinking, Apache 2.0)
+    - Apr 2026 — **Gemma 4** (all tiers, multimodal, Apache 2.0) ← **course default**
+    ]
 
-    - Llama 3.3 was released in December of 2024
-
-    ---
-
-    # Llama 3 Series
-
-    - Open source with a Commercial license
-
-    --
-
-    - The latest and greatest: Llama3.3
-
-    <img src="../notebooks/assets-resources/llama33-params.png" style="width: 100%;">
-
-    <p style="font-size: 14px; margin-top: 200px; margin-left: 0px">
-      <a href='https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct'>Hugging Face - Llama 3.3 70B Instruct</a>
+    <br>
+    <p style="font-size: 15px; margin-top: 20px;">
+      Llama 3.3 is still excellent for coding and instruction — but <strong>Gemma 4 is the new anchor</strong> for this course: it covers every compute tier, adds multimodal, and ships with a clean commercial license.
     </p>
 
     ---
