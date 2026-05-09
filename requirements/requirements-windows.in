@@ -14,7 +14,6 @@ transformers
 # bitsandbytes
 accelerate
 tavily-python
-gpt4all>=2.8.2  # Version 2.8.0 has no Windows wheels, 2.8.2+ works
 matplotlib
 unstructured[md]
 scikit-learn

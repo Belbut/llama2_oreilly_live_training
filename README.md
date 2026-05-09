@@ -82,7 +82,7 @@ These notebooks follow a structured learning path from basics to advanced topics
 
 3. [Local RAG with Gemma 4](notebooks/2.1-local-rag.ipynb) - Build a complete local RAG system using Gemma 4 and PDF documents
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-local-rag-with-llama3.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-local-rag.ipynb)
 
 #### 3. Tool Calling and Structured Outputs
 
@@ -90,13 +90,13 @@ These notebooks follow a structured learning path from basics to advanced topics
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-tool-calling-ollama.ipynb)
 
-5. [Llama 3.1 Structured Outputs](notebooks/3.1-llama31-structured-outputs.ipynb) - Generate structured outputs using Pydantic models with Llama 3.1
+5. [Local Agents: Structured Outputs to Tool Calling](notebooks/3.1-local-agents-intro.ipynb) - Build up to local agents through structured outputs with Pydantic and tool calling
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.1-llama31-structured-outputs.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.1-local-agents-intro.ipynb)
 
-6. [Local Agent from Scratch](notebooks/3.2-local-agent-from-scratch.ipynb) - Build a simple agent from scratch using tool calling
+6. [Local Agent from Scratch](notebooks/local-agent-from-scratch.ipynb) - Build a simple agent from scratch using tool calling
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.2-local-agent-from-scratch.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/local-agent-from-scratch.ipynb)
 
 #### 4. Agentic RAG
 
@@ -104,29 +104,35 @@ These notebooks follow a structured learning path from basics to advanced topics
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-simple-agentic-rag.ipynb)
 
+#### 4.5 Local Agents
+
+8. [Useful Local Agents](notebooks/5.0-useful-local-agents.ipynb) - Run Hermes Agent with Gemma 4, vibe-check agentic task quality, and learn when to route to the cloud
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/5.0-useful-local-agents.ipynb)
+
 #### 5. Fine-Tuning
 
-8. [Fine-Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.md) - Comprehensive guide to fine-tuning concepts (LoRA, QLoRA, PEFT)
+9. [Fine-Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.md) - Comprehensive guide to fine-tuning concepts (LoRA, QLoRA, PEFT)
 
-9. [Fine-Tuning Walkthrough with Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb) - Practical fine-tuning implementation
+10. [Fine-Tuning Walkthrough with Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb) - Practical fine-tuning implementation
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
 
-10. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb) - Deep dive into model quantization
+11. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb) - Deep dive into model quantization
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
 
 #### 6. Advanced Topics
 
-11. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb) - Explore different GUI options for working with Llama models
+12. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb) - Explore different GUI options for working with Llama models
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/7.0-gui-for-llama3-options.ipynb)
 
-12. [Best Local LLMs in Practice (2025 Edition)](notebooks/8.0-best-local-models-examples.ipynb) - Compare and explore the best local models available
+13. [Best Local LLMs in Practice (2026 Edition)](notebooks/8.0-best-local-models-examples.ipynb) - Compare and explore the best local models available
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/8.0-best-local-models-examples.ipynb)
 
-13. [vLLM Setup Guide](notebooks/vllm-setup-guide.ipynb) - Complete guide to setting up and using vLLM for high-performance inference
+14. [vLLM Setup Guide](notebooks/vllm-setup-guide.ipynb) - Complete guide to setting up and using vLLM for high-performance inference
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/vllm-setup-guide.ipynb)
 
