@@ -1,390 +1,315 @@
 # Best Open-Source LLMs for Local Deployment (2026 Edition)
 
-*Updated May 2026 - Comprehensive guide to the top-performing open-source language models that can run locally with <64GB RAM*
+*Updated May 2026 — Covers models runnable on consumer hardware up to 48GB VRAM*
+
+---
 
 ## Course Default: Gemma 4
 
-**Gemma 4** (Google DeepMind, April 2026) is the default model for this course session.
+**Gemma 4** (Google DeepMind, April 2026) is the primary model for this course. One family covers every student regardless of hardware, is multimodal by default, and carries a clean Apache 2.0 license with no usage restrictions.
 
-| Variant | RAM / VRAM | Use When |
-|---------|-----------|----------|
-| `gemma4:e4b` | CPU only | No GPU available |
-| `gemma4:26b` | 8 GB VRAM | Most students — best price/performance |
-| `gemma4:31b` | 20 GB VRAM | Prosumer GPUs, highest quality |
+| Variant | VRAM / RAM | Ollama Tag | Use When |
+|---------|-----------|------------|----------|
+| `gemma4:e2b` | CPU, ≤8GB RAM | `gemma4:e2b` | Very constrained hardware |
+| `gemma4:e4b` | CPU, 8–16GB RAM | `gemma4:e4b` | No GPU available |
+| `gemma4:26b` | 8GB VRAM | `gemma4:26b` | Most students — fits on any gaming GPU |
+| `gemma4:31b` | 20GB VRAM | `gemma4:31b` | Prosumer GPUs, best quality |
 
-- **Multimodal** — image + audio input across all sizes, no extra model needed
-- **Apache 2.0** — no MAU caps, no EU restrictions
-- **#3 on Chatbot Arena** among all open-weight models (May 2026)
-
-```bash
-ollama pull gemma4:e4b   # CPU-only
-ollama pull gemma4:26b   # 8 GB VRAM
-```
-
-## Runner-Up: Qwen 3.6 27B
-
-**Qwen 3.6 27B** (Alibaba, 2026) leads open-weight benchmarks for tool use and coding tasks.
-
-- 27B parameters — 17 GB VRAM (or ~10 GB quantised)
-- Built-in thinking mode for hard reasoning problems
-- Best-in-class tool calling for agentic workflows
-- Apache 2.0 license
+- **Multimodal** — image and audio input across all sizes, no extra model needed
+- **Apache 2.0** — no MAU caps, no EU geographic restrictions, safe for commercial products
+- **#3 on Chatbot Arena** among all open-weight models as of May 2026
+- **26B (MoE)** activates only 3.8B parameters per token — fits 8GB VRAM at Q4 quantization
 
 ```bash
-ollama pull qwen3.6:27b
+ollama pull gemma4:e4b    # CPU-only
+ollama pull gemma4:26b    # 8GB VRAM (recommended for most students)
+ollama pull gemma4:31b    # 20GB VRAM
 ```
 
 ---
 
-## Executive Summary
+## Model Tiers by Hardware
 
-This guide covers the best open-source language models available for local deployment as of May 2026, focusing on models that require less than 64GB RAM while delivering state-of-the-art performance. We evaluate models based on performance benchmarks, ease of deployment, community support, and practical applications.
+### Tier 1 — CPU Only (8–16GB RAM)
 
-## Top Tier Models (Outstanding Performance)
+**Start here:** `ollama pull qwen3:4b` (general) or `ollama pull phi4-mini` (reasoning/math)
 
-### 1. Qwen2.5 / Qwen 3.6 Series (Alibaba)
+| Model | Size | License | Ollama Tag | Strength | Notes |
+|-------|------|---------|------------|----------|-------|
+| **Qwen3 4B** ★ | 4B | Apache 2.0 | `qwen3:4b` | General, multilingual | 2.5GB disk; hybrid thinking/non-thinking mode; 100+ languages |
+| **Phi-4 Mini** ★ | 3.8B | MIT | `phi4-mini` | Reasoning, math | MMLU 68.5%; 128K context; ~20–30 tok/s on CPU |
+| Gemma 4 E4B | ~4.5B active (8B MoE) | Apache 2.0 | `gemma4:e4b` | Multimodal (image + audio) | 9.6GB disk; only CPU option with native multimodal |
+| Gemma 4 E2B | ~2.3B active (5.1B MoE) | Apache 2.0 | `gemma4:e2b` | Ultra-lightweight | 7.2GB disk; best for ≤8GB RAM systems |
+| Qwen3 1.7B | 1.7B | Apache 2.0 | `qwen3:1.7b` | Minimal footprint | 1.4GB disk; Raspberry Pi / embedded |
+| DeepSeek-R1 7B (distill) | 7B | MIT | `deepseek-r1:7b` | Chain-of-thought reasoning | 4.7GB disk; distilled from 671B; strong math; slow on CPU |
 
-**Best Models:**
-- **Qwen2.5-72B-Instruct** - 64GB RAM requirement
-- **Qwen2.5-32B-Instruct** - 32GB RAM requirement  
-- **Qwen2.5-14B-Instruct** - 16GB RAM requirement
-- **Qwen2.5-7B-Instruct** - 8GB RAM requirement
+**Picking a model at Tier 1:**
+- Default general use → **Qwen3 4B**: smallest footprint, multilingual, hybrid thinking mode
+- STEM, math, or structured reasoning → **Phi-4 Mini**: best reasoning at this size class
+- Need image or audio input on CPU → **Gemma 4 E4B**: only option with native multimodal here
 
-**Key Strengths:**
-- **Multilingual Excellence**: Superior performance in Chinese, English, and 25+ languages
-- **Code Generation**: Exceptional programming capabilities across multiple languages
-- **Reasoning**: Strong mathematical and logical reasoning
-- **Long Context**: Up to 128K context length
-- **Tool Calling**: Built-in function calling capabilities
+---
 
-**Use Cases:** Research, multilingual applications, code generation, complex reasoning tasks
+### Tier 2 — Consumer GPU (6–16GB VRAM)
 
-**Installation Example:**
+**Start here:** `ollama pull phi4` (if 10–16GB VRAM) or `ollama pull qwen3:8b` (if 8GB VRAM)
+
+| Model | Size | License | Ollama Tag | Strength | Notes |
+|-------|------|---------|------------|----------|-------|
+| **Phi-4 14B** ★ | 14B dense | MIT | `phi4` | Reasoning, STEM | 9.1GB disk; MMLU ~80%; matches Llama 3.3 70B on reasoning at 5× smaller |
+| **Qwen3 8B** ★ | 8B | Apache 2.0 | `qwen3:8b` | Coding, multilingual | 5.2GB disk; fits 8GB VRAM; hybrid thinking mode; tool calling |
+| **Gemma 4 26B (MoE)** ★ | 26B total / 3.8B active | Apache 2.0 | `gemma4:26b` | General, multimodal | 18GB disk; fits 8GB VRAM at Q4; 256K context; #3 Chatbot Arena |
+| Qwen3 14B | 14B | Apache 2.0 | `qwen3:14b` | Long context, coding | 9.3GB disk; solid all-rounder |
+| DeepSeek-R1 14B (distill) | 14B | MIT | `deepseek-r1:14b` | Reasoning, math | 9.0GB disk; chain-of-thought; fits 12GB VRAM |
+| Phi-4 Mini Reasoning | 3.8B | MIT | `phi4-mini-reasoning:3.8b` | Math specialist | MATH-500: 94.6%; ideal for STEM tutoring on 6GB VRAM |
+| Mistral Small 3.2 | 24B dense | Apache 2.0 | `mistral-small3.2:24b` | Multilingual, vision | 128K context; text + image; 1.9M Ollama pulls; fits 16GB VRAM at Q4 |
+| LFM2 (Liquid AI) | 24B total / 2B active | Apache 2.0 | `lfm2` | Fast inference | MoE; 2B active → very fast despite 24B total; 1.1M Ollama pulls |
+
+**Picking a model at Tier 2:**
+- Best overall quality on 10–16GB VRAM → **Phi-4 14B**: punches far above its weight
+- Only have 8GB VRAM → **Qwen3 8B**: fast, capable, best fit for that constraint
+- Want best quality + multimodal on 8GB VRAM → **Gemma 4 26B (MoE)**: MoE architecture makes it fit
+
+---
+
+### Tier 3 — Prosumer GPU (20–24GB VRAM)
+
+**Start here:** `ollama pull qwen3.6:27b` (coding/agentic) or `ollama pull gemma4:31b` (general + multimodal)
+
+| Model | Size | License | Ollama Tag | Strength | Notes |
+|-------|------|---------|------------|----------|-------|
+| **Qwen3.6 27B** ★ | 27B dense | Apache 2.0 | `qwen3.6:27b` | Coding, agentic | Artificial Analysis score 46; SWE-bench Verified 77.2%; vision; 256K context |
+| **Gemma 4 31B** ★ | 30.7B dense | Apache 2.0 | `gemma4:31b` | General, multimodal | AA score 39; MMLU-Pro 85.2%; AIME 89.2%; 20GB disk at Q4 |
+| **DeepSeek-R1 32B (distill)** ★ | 32B | MIT | `deepseek-r1:32b` | Math, reasoning | Best reasoning model fitting 24GB VRAM; 20GB disk |
+| Qwen3 32B | 32B | Apache 2.0 | `qwen3:32b` | General, multilingual | 20GB disk; hybrid thinking mode |
+| Qwen3 30B (MoE) | 30B total / 3B active | Apache 2.0 | `qwen3:30b` | Fast inference | 19GB disk; 3B active → very fast for quality level; 256K context |
+| Qwen3-Coder-Next | 80B total / 3B active MoE | Apache 2.0 | `qwen3-coder-next` | Code generation | 1.3M Ollama pulls; 3B active → fast despite 80B total |
+
+**Picking a model at Tier 3:**
+- Coding, agents, tool use → **Qwen3.6 27B**: #8 on Artificial Analysis, best SWE-bench at this tier
+- General + multimodal → **Gemma 4 31B**: best multimodal quality that fits 24GB VRAM
+- Pure reasoning / math / science → **DeepSeek-R1 32B (distill)**: strongest chain-of-thought at this tier
+
+---
+
+### Tier 4 — Multi-GPU / Cloud (48GB+ VRAM)
+
+Most of these require multi-GPU infrastructure or cloud-routed access. Self-hostable options are flagged.
+
+**Best self-hostable:** `ollama pull deepseek-r1:70b` (43GB, MIT, single A100 80GB)
+**Best cloud-access:** `ollama pull kimi-k2.6` (cloud-routed, #1 on Artificial Analysis)
+
+| Model | AA Score | Size | License | Ollama Tag | Self-hostable? | Strength |
+|-------|----------|------|---------|------------|----------------|---------|
+| **Kimi K2.6** ★ (Moonshot AI) | 54 | 1T total / 32B active | Modified MIT | `kimi-k2.6` (cloud) | No | SWE-bench 80.2%; AIME 96.4%; agentic coding |
+| DeepSeek V4 Pro | 52 | 1.6T total / 49B active | MIT | `deepseek-v4-pro` (cloud) | Yes (8× H200) | SWE-bench 80.6%; MMLU-Pro 87.5% |
+| GLM-5.1 (Z.AI) | 51 | 754B MoE | MIT | `glm-5.1` (cloud) | Yes (massive infra) | #1 open model on SWE-bench Pro |
+| Qwen3.5 397B (MoE) | 45 | 397B total / 17B active | Apache 2.0 | `qwen3.5:397b` (cloud) | Yes (multi-GPU) | Frontier reasoning; AIME competitive with o3-mini |
+| Qwen3.5 122B (MoE) | 42 | 122B total / 10B active | Apache 2.0 | `qwen3.5:122b` | Yes (2× A100 80GB) | Strong coding + reasoning; good VRAM efficiency |
+| **DeepSeek-R1 70B (distill)** ★ | — | 70B | MIT | `deepseek-r1:70b` | **Yes (43GB, 1× A100 80GB)** | MMLU 90.8%; best self-hostable reasoning model |
+| **Llama 3.3 70B** ★ | — | 70B dense | Llama 3.3 Community | `llama3.3:70b` | **Yes (43GB)** | MMLU 86%; strong coding; 3.8M Ollama pulls |
+| Llama 4 Scout | — | 109B total / 17B active | Llama 4 Community | `llama4:16x17b` | Yes (67GB) | 10M context; multimodal; EU restrictions apply |
+
+---
+
+## Model Family Reference
+
+### Gemma 4 (Google, April 2026)
+Apache 2.0. Four variants: E2B, E4B, 26B MoE, 31B dense. Native multimodal (images, video, audio) across all sizes — a major leap from Gemma 3's text-only smaller models. The 26B MoE activates only 3.8B parameters per token, fitting consumer GPUs. The 31B dense ranks #3 among all open models on Chatbot Arena, ahead of Llama 4 Maverick on math and coding.
+
+### Qwen 3 / 3.5 / 3.6 (Alibaba, 2025–2026)
+Apache 2.0. Qwen3 launched April 2025 with 8 dense and MoE sizes (0.6B–235B) introducing a **hybrid thinking/non-thinking mode** — toggle with a system prompt. Qwen3.5 expanded multimodal capabilities and added larger MoE variants up to 397B. Qwen3.6-27B (April 2026) is a 27B dense model hitting 77.2% SWE-bench Verified, outperforming models many times its size on coding.
+
+### DeepSeek R1 / V4 (DeepSeek, 2025–2026)
+DeepSeek-R1 (January 2025, MIT) is the reference reasoning model. All distilled variants (7B, 14B, 32B, 70B) are MIT-licensed. DeepSeek V4 Pro (April 2026, MIT) scales to 1.6T parameters with 49B active, reaching 80.6% SWE-bench Verified and topping Artificial Analysis rankings.
+
+### Phi-4 (Microsoft, 2025)
+MIT license. Phi-4 14B achieves MMLU 80.4% — competitive with models 5× its size. Phi-4 Mini (3.8B) brings strong reasoning to sub-4GB disk. Phi-4 Mini Reasoning (April 2025) is a math specialist scoring 94.6% on MATH-500. No Phi-5 as of May 2026.
+
+### Llama 3.3 / 4 (Meta, 2024–2026)
+Llama 3.3 70B (late 2024) remains competitive on coding benchmarks. Llama 4 Scout and Maverick (April 2025) are multimodal MoE models with 17B active parameters and context windows up to 10M tokens. **License note:** restricts EU-domiciled users and companies with 700M+ MAU. Llama 4 Behemoth (~2T parameters) previewed but weights unreleased as of May 2026.
+
+### Mistral (2025–2026)
+Mistral Small 3.2 (24B, Apache 2.0, `mistral-small3.2:24b`) is the current small-tier model with vision. Magistral (24B, Apache 2.0, `magistral`) is the thinking/reasoning variant. Mistral Medium 3.5 (April 2026, 128B dense) is the flagship self-hostable model with a built-in coding agent at 77.6% SWE-bench Verified.
+
+---
+
+## Quick Start
+
+### Install Ollama
+
 ```bash
-# Via Ollama
-ollama pull qwen2.5:72b
-ollama pull qwen2.5:32b
-
-# Via Hugging Face
-pip install transformers torch
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### 2. DeepSeek-V3 (DeepSeek AI)
-
-**Best Models:**
-- **DeepSeek-V3-Base** - 64GB RAM (MoE architecture, only ~37B active parameters)
-- **DeepSeek-Coder-V2-Instruct-236B** - 64GB RAM (specialized for coding)
-
-**Key Strengths:**
-- **Mixture of Experts**: Efficient scaling with sparse activation
-- **Code Specialization**: Best-in-class coding performance
-- **Cost Efficiency**: Excellent performance per parameter ratio
-- **Reasoning**: Strong on mathematical and logical tasks
-
-**Use Cases:** Software development, code review, algorithm design, technical writing
-
-### 3. Mixtral 8x22B (Mistral AI)
-
-**Model:** Mixtral-8x22B-Instruct-v0.1
-**RAM Requirement:** ~48GB (only 2 of 8 experts active per token)
-
-**Key Strengths:**
-- **Mixture of Experts**: Efficient scaling with sparse computation
-- **Multilingual**: Strong performance across languages
-- **Instruction Following**: Excellent chat and instruction capabilities
-- **Open License**: Permissive Apache 2.0 license
-
-**Use Cases:** General-purpose applications, multilingual support, efficient serving
-
-## High Performance Models (Excellent Balance)
-
-### 4. Command-R+ (Cohere)
-
-**Model:** Command-R-Plus-104B
-**RAM Requirement:** ~60GB
-
-**Key Strengths:**
-- **RAG Optimization**: Built for retrieval-augmented generation
-- **Tool Use**: Native API calling and tool integration
-- **Long Context**: 128K context window
-- **Grounding**: Excellent at citing sources and staying factual
-
-**Use Cases:** Enterprise RAG systems, research assistance, fact-checking
-
-### 5. Yi-Large (01.AI)
-
-**Best Models:**
-- **Yi-Large** - 34B parameters, ~40GB RAM
-- **Yi-34B-Chat** - 34B parameters, ~38GB RAM
-
-**Key Strengths:**
-- **Bilingual**: Excellent Chinese and English performance
-- **Reasoning**: Strong logical and mathematical capabilities  
-- **Long Context**: Extended context handling
-- **Fine-tuning Friendly**: Excellent base for custom training
-
-**Use Cases:** Bilingual applications, reasoning tasks, custom fine-tuning
-
-### 6. Gemma 2 Series (Google)
-
-**Best Models:**
-- **Gemma-2-27B-IT** - 27B parameters, ~32GB RAM
-- **Gemma-2-9B-IT** - 9B parameters, ~12GB RAM
-
-**Key Strengths:**
-- **Efficiency**: Excellent performance per parameter
-- **Safety**: Built-in safety features and alignment
-- **Research Friendly**: Comprehensive documentation and tools
-- **Lightweight**: Great for resource-constrained environments
-
-**Use Cases:** Research, education, safety-critical applications
-
-## Specialized Models
-
-### 7. Code-Specific Models
-
-**CodeLlama-70B (Meta)**
-- **RAM Requirement:** ~60GB
-- **Specialization:** Code generation, debugging, explanation
-- **Languages:** 500+ programming languages
-- **Context:** Up to 100K tokens for large codebases
-
-**StarCoder2-15B (BigCode)**
-- **RAM Requirement:** ~18GB  
-- **Specialization:** Code completion, generation
-- **Training Data:** The Stack v2 (high-quality code)
-- **Licensing:** Responsible AI License
-
-**DeepSeek-Coder-V2-16B**
-- **RAM Requirement:** ~20GB
-- **Specialization:** Coding with exceptional efficiency
-- **Performance:** Rivals much larger models on code tasks
-
-### 8. Multimodal Models
-
-**Llama-3.2-90B-Vision (Meta)**
-- **RAM Requirement:** ~64GB
-- **Capabilities:** Text + image understanding
-- **Use Cases:** Document analysis, visual Q&A, image captioning
-
-**Qwen2-VL-72B (Alibaba)**
-- **RAM Requirement:** ~60GB  
-- **Capabilities:** Advanced vision-language tasks
-- **Strengths:** OCR, chart analysis, complex visual reasoning
-
-## Efficient Small Models (Under 16GB RAM)
-
-### 9. High-Efficiency Options
-
-**Phi-3.5-MoE-Instruct (Microsoft)**
-- **RAM Requirement:** ~8GB
-- **Architecture:** Mixture of Experts
-- **Strengths:** Reasoning, math, coding efficiency
-
-**Llama-3.2-3B-Instruct (Meta)**
-- **RAM Requirement:** ~4GB
-- **Strengths:** Balanced performance, mobile deployment
-- **Use Cases:** Edge computing, mobile apps
-
-**Qwen2.5-3B-Instruct (Alibaba)**
-- **RAM Requirement:** ~4GB
-- **Strengths:** Multilingual, code generation
-- **Efficiency:** Best-in-class for size
-
-## Performance Benchmarks (January 2025)
-
-### Reasoning & Math (Higher is Better)
-| Model | MMLU | GSM8K | MATH | HumanEval |
-|-------|------|-------|------|-----------|
-| Qwen2.5-72B | 86.5 | 95.3 | 73.4 | 86.2 |
-| DeepSeek-V3 | 88.5 | 92.2 | 75.7 | 90.2 |
-| Mixtral-8x22B | 81.1 | 88.4 | 45.8 | 75.8 |
-| Command-R+ | 82.0 | 89.6 | 41.5 | 71.9 |
-| Yi-Large | 84.9 | 94.1 | 50.4 | 77.6 |
-| Gemma-2-27B | 81.2 | 91.7 | 56.3 | 70.2 |
-
-### Code Generation (Pass@1, Higher is Better)
-| Model | HumanEval | MBPP | CodeContests |
-|-------|-----------|------|--------------|
-| DeepSeek-Coder-V2 | 90.2 | 84.1 | 43.8 |
-| CodeLlama-70B | 86.2 | 78.9 | 35.4 |
-| Qwen2.5-72B | 86.2 | 80.3 | 40.2 |
-| StarCoder2-15B | 72.6 | 68.4 | 28.9 |
-
-## Deployment Recommendations
-
-### Hardware Configurations
-
-**Budget Setup (16GB RAM)**
-- **Best Choice:** Qwen2.5-7B, Gemma-2-9B, or Phi-3.5-MoE
-- **GPU:** RTX 4060/4070 or similar
-- **Use Cases:** Learning, prototyping, simple applications
-
-**Mid-Range Setup (32GB RAM)**
-- **Best Choice:** Qwen2.5-14B, Yi-34B, or Gemma-2-27B
-- **GPU:** RTX 4080/4090 or similar
-- **Use Cases:** Development, small business applications
-
-**High-End Setup (64GB RAM)**
-- **Best Choice:** Qwen2.5-72B, DeepSeek-V3, or Mixtral-8x22B
-- **GPU:** RTX 4090, A6000, or similar
-- **Use Cases:** Research, enterprise applications, production systems
-
-### Deployment Tools
-
-**Ollama (Recommended for Beginners)**
-```bash
-# Install Ollama
-curl -fsSL https://ollama.ai/install.sh | sh
-
-# Pull and run models
-ollama pull qwen2.5:72b
-ollama pull deepseek-coder-v2:16b
-ollama pull mixtral:8x22b
-```
-
-**LM Studio (GUI Option)**
-- Download from: https://lmstudio.ai/
-- Supports most GGUF models
-- User-friendly interface
-- Built-in model browser
-
-**llama.cpp (Advanced Users)**
-```bash
-git clone https://github.com/ggerganov/llama.cpp
-cd llama.cpp && make
-./main -m model.gguf -p "Your prompt here"
-```
-
-**vLLM (Production Serving)**
-```bash
-pip install vllm
-python -m vllm.entrypoints.openai.api_server \
-  --model Qwen/Qwen2.5-72B-Instruct \
-  --max-model-len 32768
-```
-
-## Model Selection Guide
-
-### By Use Case
-
-**Research & Academia**
-- **Primary:** Qwen2.5-72B, DeepSeek-V3
-- **Budget:** Qwen2.5-32B, Yi-Large
-
-**Software Development**
-- **Primary:** DeepSeek-Coder-V2, CodeLlama-70B
-- **Budget:** StarCoder2-15B, DeepSeek-Coder-16B
-
-**Multilingual Applications**
-- **Primary:** Qwen2.5 series, Command-R+
-- **Budget:** Yi models, Gemma-2
-
-**Business Applications**
-- **Primary:** Command-R+, Mixtral-8x22B
-- **Budget:** Qwen2.5-32B, Gemma-2-27B
-
-**Edge/Mobile Deployment**
-- **Primary:** Phi-3.5-MoE, Llama-3.2-3B
-- **Budget:** Qwen2.5-3B, Gemma-2-2B
-
-### By Performance Priority
-
-**Maximum Performance (64GB budget)**
-1. DeepSeek-V3
-2. Qwen2.5-72B  
-3. Mixtral-8x22B
-
-**Best Efficiency (32GB budget)**
-1. Qwen2.5-32B
-2. Yi-Large
-3. Gemma-2-27B
-
-**Minimal Resources (16GB budget)**
-1. Qwen2.5-14B
-2. Gemma-2-9B
-3. Phi-3.5-MoE
-
-## Getting Started Examples
-
-### Quick Start with Qwen2.5
+### Course Default (Gemma 4)
 
 ```python
-# Via Transformers
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model_name = "Qwen/Qwen2.5-32B-Instruct"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    torch_dtype="auto",
-    device_map="auto"
-)
-
-messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Explain quantum computing in simple terms."}
-]
-
-text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-inputs = tokenizer([text], return_tensors="pt").to(model.device)
-
-outputs = model.generate(
-    **inputs,
-    max_new_tokens=256,
-    temperature=0.7,
-    top_p=0.8,
-    repetition_penalty=1.05
-)
-
-response = outputs[0][inputs['input_ids'].shape[-1]:]
-print(tokenizer.decode(response, skip_special_tokens=True))
-```
-
-### Quick Start with DeepSeek-Coder
-
-```python
-# Via Ollama Python
 import ollama
 
 response = ollama.chat(
-    model='deepseek-coder-v2:16b',
+    model='gemma4:26b',
     messages=[
-        {
-            'role': 'user',
-            'content': 'Write a Python function to implement binary search with error handling.'
-        }
+        {'role': 'user', 'content': 'Explain the difference between RAG and fine-tuning.'}
     ]
 )
-
 print(response['message']['content'])
 ```
 
-## Future Trends & Updates
+### Gemma 4 Multimodal (Image Input)
 
-### Expected Developments (2025)
+```python
+import ollama
+import base64
 
-1. **Improved Efficiency**: Better quantization techniques (sub-4-bit)
-2. **Multimodal Integration**: More text+vision+audio models
-3. **Specialized Variants**: Domain-specific fine-tunes (medicine, law, finance)
-4. **Hardware Optimization**: Better ARM and mobile deployment
-5. **Tool Integration**: Enhanced function calling and agent capabilities
+with open('image.jpg', 'rb') as f:
+    image_data = base64.b64encode(f.read()).decode()
 
-### Keeping Updated
+response = ollama.chat(
+    model='gemma4:26b',
+    messages=[
+        {
+            'role': 'user',
+            'content': 'Describe what you see in this image.',
+            'images': [image_data]
+        }
+    ]
+)
+print(response['message']['content'])
+```
 
-- **Hugging Face Leaderboards**: https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard
-- **Papers with Code**: https://paperswithcode.com/sota/language-modelling-on-penn-treebank-word
-- **Model Release Trackers**: Follow major AI labs on Twitter/LinkedIn
-- **Community Forums**: Reddit r/LocalLLaMA, Discord communities
+### Qwen3 with Thinking Mode
 
-## Conclusion
+```python
+import ollama
 
-The landscape of local LLMs has advanced dramatically. In 2026, **Gemma 4** and **Qwen 3.6** set the new bar for what's achievable on consumer hardware — multimodal, commercially licensed, and competitive with cloud APIs on most tasks.
+response = ollama.chat(
+    model='qwen3:8b',
+    messages=[
+        {'role': 'system', 'content': 'You are a helpful assistant. /think'},
+        {'role': 'user', 'content': 'Write a Python function to find all prime numbers up to N using the Sieve of Eratosthenes.'}
+    ]
+)
+print(response['message']['content'])
+```
 
-For most users in 2026:
-- **Course default / general use**: `gemma4:26b` (8 GB VRAM) or `gemma4:e4b` (CPU-only)
-- **Coding + agentic tasks**: `qwen3.6:27b`
-- **Math / reasoning**: `deepseek-r1:32b`
-- **Production serving**: Gemma 4 31B via vLLM
+### OpenAI-Compatible Endpoint (Drop-in Replacement)
 
-The models listed here represent the state-of-the-art as of May 2026. Check the referenced leaderboards for the latest benchmark scores.
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
+
+response = client.chat.completions.create(
+    model='gemma4:26b',
+    messages=[
+        {'role': 'user', 'content': 'What is retrieval-augmented generation?'}
+    ]
+)
+print(response.choices[0].message.content)
+```
+
+---
+
+## Deployment Tools
+
+### Ollama — Recommended for most users
+Always-on OpenAI-compatible endpoint at `localhost:11434/v1`. Default choice for the course.
+
+```bash
+ollama serve                    # start server (auto-starts on install)
+ollama pull gemma4:26b          # download model
+ollama list                     # list downloaded models
+ollama run gemma4:26b           # interactive chat in terminal
+```
+
+### LM Studio — Best for beginners and model discovery
+Point-and-click GUI with a built-in Hugging Face model browser. Best model discovery experience, especially on Apple Silicon. API server must be started manually. 3M+ cumulative downloads.
+
+### Open WebUI — Chat interface for Ollama
+Browser-based ChatGPT-style UI that connects to any Ollama or OpenAI-compatible backend. Includes RAG, multi-user auth, voice I/O, and a plugin system. Install after Ollama:
+
+```bash
+docker run -d -p 3000:8080 \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  ghcr.io/open-webui/open-webui:main
+```
+
+### llama-cpp-python — Advanced / in-process inference
+
+For loading any GGUF directly from Hugging Face, in-process Python inference with no daemon, or AMD GPU with Vulkan support.
+
+```bash
+pip install llama-cpp-python                  # CPU only
+CMAKE_ARGS="-DGGML_CUDA=on" pip install llama-cpp-python  # CUDA GPU
+```
+
+```python
+from llama_cpp import Llama
+
+llm = Llama.from_pretrained(
+    repo_id='bartowski/gemma-3-27b-it-GGUF',
+    filename='*Q4_K_M.gguf',
+    n_gpu_layers=-1
+)
+
+output = llm.create_chat_completion(messages=[
+    {'role': 'user', 'content': 'Explain quantization in LLMs.'}
+])
+print(output['choices'][0]['message']['content'])
+```
+
+### vLLM — Production serving (concurrent users)
+Required when serving 5+ simultaneous users. Linux + NVIDIA GPU only. Delivers 2,300+ tok/s on H100. Not needed for local development — graduate to this when moving to production.
+
+```bash
+pip install vllm
+python -m vllm.entrypoints.openai.api_server \
+  --model google/gemma-3-27b-it \
+  --max-model-len 32768
+```
+
+---
+
+## Model Selection by Use Case
+
+| Use Case | Best Pick | Alternative |
+|----------|-----------|-------------|
+| Course default / general | `gemma4:26b` (8GB VRAM) or `gemma4:e4b` (CPU) | `qwen3:8b` |
+| Coding + agentic workflows | `qwen3.6:27b` | `qwen3:8b` |
+| Math / science / reasoning | `deepseek-r1:32b` | `phi4-mini` (CPU) |
+| Multimodal (image/audio) | `gemma4:26b` | `gemma4:e4b` (CPU) |
+| Multilingual | `qwen3:4b` or `qwen3:8b` | `gemma4:26b` |
+| Minimal hardware (≤8GB RAM) | `qwen3:4b` | `gemma4:e2b` |
+| Best quality, any hardware | `gemma4:31b` (24GB VRAM) | `deepseek-r1:70b` (A100) |
+
+---
+
+## Hardware Configuration Guide
+
+**CPU only / integrated graphics (8–16GB RAM)**
+→ `gemma4:e4b` or `qwen3:4b`
+
+**Entry gaming GPU (RTX 4060 / 6–8GB VRAM)**
+→ `qwen3:8b` or `gemma4:26b` (Q4 quant)
+
+**Mid-range GPU (RTX 4070 / 10–12GB VRAM)**
+→ `phi4` (14B) or `qwen3:14b`
+
+**High-end GPU (RTX 4090 / 24GB VRAM)**
+→ `gemma4:31b` or `qwen3.6:27b` or `deepseek-r1:32b`
+
+**Prosumer / workstation (48GB+ VRAM)**
+→ `deepseek-r1:70b` or `llama3.3:70b`
+
+---
+
+## Keeping Updated
+
+- **Chatbot Arena (overall quality):** https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard
+- **Artificial Analysis (open-source rankings):** https://artificialanalysis.ai
+- **Ollama model library:** https://ollama.com/library
+- **Hugging Face trending:** https://huggingface.co/models?sort=trending
+- **Community:** r/LocalLLaMA (636k+ members)
