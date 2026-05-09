@@ -110,7 +110,7 @@ python -m ipykernel install --user --name=oreilly-llama3
 3. After installation, pull the Llama 3 model:
 
    ```powershell
-   ollama pull llama3
+   ollama pull gemma4
    ```
 
 ## Troubleshooting
