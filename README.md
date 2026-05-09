@@ -80,7 +80,7 @@ These notebooks follow a structured learning path from basics to advanced topics
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-introduction-to-rag.ipynb)
 
-3. [Local RAG with Llama 3](notebooks/2.1-local-rag.ipynb) - Build a complete local RAG system using Llama 3 and PDF documents
+3. [Local RAG with Gemma 4](notebooks/2.1-local-rag.ipynb) - Build a complete local RAG system using Gemma 4 and PDF documents
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-local-rag-with-llama3.ipynb)
 
@@ -138,7 +138,7 @@ Older versions and experimental notebooks are available in the `notebooks/legacy
 
 ### Model Guides
 - **[LLM Model Sizes Guide](llm-model-sizes-guide.md)** - Comprehensive guide to different model sizes and their use cases
-- **[Best Local Models 2025](best-local-models-2025.md)** - Updated guide to the top-performing open-source models that can run locally with <64GB RAM, including Qwen, DeepSeek, Mixtral, and others
+- **[Best Local Models 2026](best-local-models-2026.md)** - Updated guide to the top-performing open-source models that can run locally with <64GB RAM, including Gemma 4, Qwen 3.6, DeepSeek, and others
 
 ### Key Features of the 2025 Model Guide:
 - **Performance Benchmarks**: Latest benchmark scores for reasoning, coding, and multilingual tasks
@@ -147,10 +147,10 @@ Older versions and experimental notebooks are available in the `notebooks/legacy
 - **Use Case Recommendations**: Which models work best for specific applications
 - **Model Comparisons**: Side-by-side analysis of capabilities and trade-offs
 
-### Top Models Covered Beyond Llama:
-- **Qwen2.5 Series** (Alibaba) - Exceptional multilingual and reasoning capabilities
+### Top Models Covered:
+- **Gemma 4** (Google DeepMind) - Course default; multimodal, Apache 2.0, all compute tiers
+- **Qwen 3.6 27B** (Alibaba) - Best open model for coding and agentic tasks
+- **DeepSeek-R1 32B** - Frontier-level reasoning, MIT license
+- **Qwen2.5 Series** (Alibaba) - Strong multilingual and reasoning capabilities
 - **DeepSeek-V3 & DeepSeek-Coder** - Specialized programming and development
 - **Mixtral 8x22B** - Efficient Mixture of Experts architecture
-- **Gemma 2** (Google) - Efficient and safety-focused models
-- **Command-R+** (Cohere) - Optimized for RAG and tool use
-- **Yi-Large** (01.AI) - Strong bilingual performance

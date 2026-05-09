@@ -1,14 +1,48 @@
-# Best Open-Source LLMs for Local Deployment (2025 Edition)
+# Best Open-Source LLMs for Local Deployment (2026 Edition)
 
-*Updated January 2025 - Comprehensive guide to the top-performing open-source language models that can run locally with <64GB RAM*
+*Updated May 2026 - Comprehensive guide to the top-performing open-source language models that can run locally with <64GB RAM*
+
+## Course Default: Gemma 4
+
+**Gemma 4** (Google DeepMind, April 2026) is the default model for this course session.
+
+| Variant | RAM / VRAM | Use When |
+|---------|-----------|----------|
+| `gemma4:e4b` | CPU only | No GPU available |
+| `gemma4:26b` | 8 GB VRAM | Most students — best price/performance |
+| `gemma4:31b` | 20 GB VRAM | Prosumer GPUs, highest quality |
+
+- **Multimodal** — image + audio input across all sizes, no extra model needed
+- **Apache 2.0** — no MAU caps, no EU restrictions
+- **#3 on Chatbot Arena** among all open-weight models (May 2026)
+
+```bash
+ollama pull gemma4:e4b   # CPU-only
+ollama pull gemma4:26b   # 8 GB VRAM
+```
+
+## Runner-Up: Qwen 3.6 27B
+
+**Qwen 3.6 27B** (Alibaba, 2026) leads open-weight benchmarks for tool use and coding tasks.
+
+- 27B parameters — 17 GB VRAM (or ~10 GB quantised)
+- Built-in thinking mode for hard reasoning problems
+- Best-in-class tool calling for agentic workflows
+- Apache 2.0 license
+
+```bash
+ollama pull qwen3.6:27b
+```
+
+---
 
 ## Executive Summary
 
-This guide covers the best open-source language models available for local deployment as of early 2025, focusing on models that require less than 64GB RAM while delivering state-of-the-art performance. We evaluate models based on performance benchmarks, ease of deployment, community support, and practical applications.
+This guide covers the best open-source language models available for local deployment as of May 2026, focusing on models that require less than 64GB RAM while delivering state-of-the-art performance. We evaluate models based on performance benchmarks, ease of deployment, community support, and practical applications.
 
 ## Top Tier Models (Outstanding Performance)
 
-### 1. Qwen2.5 Series (Alibaba)
+### 1. Qwen2.5 / Qwen 3.6 Series (Alibaba)
 
 **Best Models:**
 - **Qwen2.5-72B-Instruct** - 64GB RAM requirement
@@ -345,12 +379,12 @@ print(response['message']['content'])
 
 ## Conclusion
 
-The landscape of local LLMs has evolved dramatically, with models like Qwen2.5, DeepSeek-V3, and Mixtral offering near-GPT-4 level performance while running on consumer hardware. The key is matching your specific needs (reasoning vs coding vs multilingual vs efficiency) with the right model architecture and size.
+The landscape of local LLMs has advanced dramatically. In 2026, **Gemma 4** and **Qwen 3.6** set the new bar for what's achievable on consumer hardware — multimodal, commercially licensed, and competitive with cloud APIs on most tasks.
 
-For most users starting in 2025:
-- **Beginners**: Start with Qwen2.5-7B or Gemma-2-9B
-- **Developers**: Try DeepSeek-Coder-V2-16B  
-- **Researchers**: Invest in Qwen2.5-72B or DeepSeek-V3
-- **Production**: Consider Mixtral-8x22B for balanced performance/cost
+For most users in 2026:
+- **Course default / general use**: `gemma4:26b` (8 GB VRAM) or `gemma4:e4b` (CPU-only)
+- **Coding + agentic tasks**: `qwen3.6:27b`
+- **Math / reasoning**: `deepseek-r1:32b`
+- **Production serving**: Gemma 4 31B via vLLM
 
-The models listed here represent the current state-of-the-art as of January 2025, but this space evolves rapidly. Check the referenced resources for the latest developments and performance benchmarks.
+The models listed here represent the state-of-the-art as of May 2026. Check the referenced leaderboards for the latest benchmark scores.
