@@ -4,3 +4,8 @@
 *.gguf
 *.key*
 /MEMORY
+.env
+.venv/
+oreilly-llama3/
+__pycache__/
+.ipynb_checkpoints/
